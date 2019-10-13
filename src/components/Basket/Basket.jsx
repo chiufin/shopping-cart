@@ -5,20 +5,21 @@ import {
   addProductToBasket,
   removeProductFromBasket
 } from '../../actions/basketActions'
-
+import styles from './Basket.scss'
+ 
 const Basket = ({length, products, addProductToBasket, removeProductFromBasket}) => {
   return (
-    <div>
-      <p>Basket {length}</p>
+    <div className = {styles.basket}>
+      <h4>Basket: {length} items</h4>
       <ul>
       {products.map(([product, amount]) => {
         const { productId, title, price, image } = product
         return(
-          <li key={productId}>
-            <img src={image}/>
-            <p>{title}</p>
-            <p>{amount}</p>
-            <p>{(price*amount).toFixed(2)}</p>
+          <li className={styles.basket__item } key={productId}>
+            <img className={styles.basket__item__image } src={image}/>
+            <p className={styles.basket__item__text } >{title}</p>
+            <p className={styles.basket__item__text }>amount: {amount}</p>
+            <p className={styles.basket__item__text }>£ {price}</p>
             <button onClick={() => addProductToBasket(product)}>add</button>
             <button onClick={() => removeProductFromBasket(product)}>remove</button>
           </li>
@@ -66,7 +67,7 @@ const organizedList = basket =>
 
 const mapStateToProps = ({basket}) => ({
   length: basket.length,
-  products: organizedList(basket)
+  products: organizedList(basket),
 })
 
 export default connect(
