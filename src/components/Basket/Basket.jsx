@@ -6,23 +6,52 @@ import {
   removeProductFromBasket
 } from '../../actions/basketActions'
 
-
-
 const Basket = ({length, products, addProductToBasket, removeProductFromBasket}) => {
   return (
     <div>
       <p>Basket {length}</p>
       <ul>
-      {products.map(([product, amount]) => 
-        <li key={product.productId}>{product.title}
-          <p>{amount}</p>
-          <button onClick={() => addProductToBasket(product)}>add</button>
-          <button onClick={() => removeProductFromBasket(product)}>remove</button>
-        </li>)}
+      {products.map(([product, amount]) => {
+        const { productId, title, price, image } = product
+        return(
+          <li key={productId}>
+            <img src={image}/>
+            <p>{title}</p>
+            <p>{amount}</p>
+            <p>{(price*amount).toFixed(2)}</p>
+            <button onClick={() => addProductToBasket(product)}>add</button>
+            <button onClick={() => removeProductFromBasket(product)}>remove</button>
+          </li>
+        )
+      })}
       </ul>
     </div>
   )
 }
+
+const productShape = {
+  productId: PropTypes.string,
+  title: PropTypes.string,
+  price: PropTypes.number,
+  image: PropTypes.string,
+}
+
+Basket.propTypes = {
+  length: PropTypes.number.isRequired,
+  products: PropTypes.arrayOf(PropTypes.arrayOf(
+    PropTypes.shape((
+      PropTypes.objectOf(PropTypes.shape(productShape)),
+      PropTypes.number
+    ))
+  )),
+  addProductToBasket: PropTypes.func.isRequired,
+  removeProductFromBasket:  PropTypes.func.isRequired,
+}
+
+Basket.defaultProps = {
+  products: []
+}
+
 
 const organizedList = basket => 
   basket.reduce((acc, current)=> {
