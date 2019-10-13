@@ -14,6 +14,8 @@ export default (state = initialState, action = {}) => {
       ]
     }
     case REMOVE_PRODUCT_FROM_BASKET: {
+      let index = state.lastIndexOf(action.payload)
+      state.splice(index, 1)
       return state
     }
     default: {

@@ -16,11 +16,11 @@ export class HomeContainer extends Component {
   }
 
   render() {
-    const { products, basket, addProductToBasket } = this.props
+    const { products, addProductToBasket } = this.props
     return (
       <Fragment>
         <h1>Products</h1>
-        <Basket list={basket}/>   
+        <Basket/>   
         <div className={styles['products-container']}>
           {products.map(product => <Product key={product.productId} product={product} onProductClick={() => addProductToBasket(product)}/>)}
         </div>
@@ -32,7 +32,6 @@ export class HomeContainer extends Component {
 
 const mapStateToProps = state => ({
   products: state.app.products,
-  basket: state.basket
 })
 
 HomeContainer.propTypes = {

@@ -5,9 +5,7 @@ exports[`HomeContainer Renders correctly 1`] = `
   <h1>
     Products
   </h1>
-  <Basket
-    list={Array []}
-  />
+  <Connect(Basket) />
   <div
     className="products-container"
   >
