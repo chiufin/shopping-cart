@@ -5,7 +5,6 @@
     "titleBar.activeBackground": "#ffffffb6",
     "titleBar.inactiveBackground": "#ffffff48"
   },
-  "eslint.options": { "configFile": "./config/eslint/.eslintrc.js" },
   "stylelint.configFile": "./config/stylelint/.stylelintrc",
   "jest.pathToConfig": "./config/jest/jest.config.js"
 }

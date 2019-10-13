@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 
 import styles from './Product.scss'
 
-const Product = (props) => {
-  const { productId, price, title, image } = props.product
+const Product = ({ onProductClick, product: { productId, price, title, image }}) => {
   return (
     <div className={styles.product} data-product-id={productId}>
       <img
@@ -14,16 +13,18 @@ const Product = (props) => {
       />
       <p>{title}</p>
       <p className={styles.price}><strong>&pound;{price}</strong></p>
+      <button onClick={onProductClick} type="button">add to basket</button>
     </div>
   )
 }
 
 Product.propTypes = {
   product: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    productId: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    onProductClick: PropTypes.func.isRequired,
   }),
 }
 
