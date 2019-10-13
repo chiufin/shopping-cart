@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
@@ -8,24 +8,31 @@ import {
 import styles from './Basket.scss'
  
 const Basket = ({length, products, addProductToBasket, removeProductFromBasket}) => {
+  const [ toggle, setToggle ] = useState(false)
   return (
     <div className = {styles.basket}>
-      <h4>Basket: {length} items</h4>
-      <ul>
-      {products.map(([product, amount]) => {
-        const { productId, title, price, image } = product
-        return(
-          <li className={styles.basket__item } key={productId}>
-            <img className={styles.basket__item__image } src={image}/>
-            <p className={styles.basket__item__text } >{title}</p>
-            <p className={styles.basket__item__text }>amount: {amount}</p>
-            <p className={styles.basket__item__text }>£ {price}</p>
-            <button onClick={() => addProductToBasket(product)}>add</button>
-            <button onClick={() => removeProductFromBasket(product)}>remove</button>
-          </li>
-        )
-      })}
-      </ul>
+      <h4>Basket: {length} items </h4>
+      { 
+        length > 0 &&
+        <button onClick={() => setToggle(!toggle)}>{toggle ? 'close panel' : 'open panel'}</button>
+      }
+      {toggle && 
+        <ul>
+          {products.map(([product, amount]) => {
+            const { productId, title, price, image } = product
+            return(
+              <li className={styles.basket__item } key={productId}>
+                <img className={styles.basket__item__image } src={image}/>
+                <p className={styles.basket__item__text } >{title}</p>
+                <p className={styles.basket__item__text }>amount: {amount}</p>
+                <p className={styles.basket__item__text }>£ {price}</p>
+                <button onClick={() => addProductToBasket(product)}>add</button>
+                <button onClick={() => removeProductFromBasket(product)}>remove</button>
+              </li>
+            )
+          })}
+        </ul>
+      }
     </div>
   )
 }
