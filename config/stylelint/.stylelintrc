@@ -1,0 +1,22 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "number-leading-zero": "never",
+    "at-rule-no-unknown": null,
+    "selector-max-specificity":"0,3,0",
+    "selector-pseudo-class-no-unknown": [ true, {
+      "ignorePseudoClasses": [
+        "export",
+        "import",
+        "global",
+        "local"
+      ]
+    }],
+    "property-no-unknown": [ true, {
+      "ignoreProperties": [
+        "composes",
+        "compose-with"
+      ]
+    }]
+  }
+}

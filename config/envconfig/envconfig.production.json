@@ -1,0 +1,4 @@
+{
+  "ENV": "production",
+  "API": "https://www.argos.co.uk"
+}

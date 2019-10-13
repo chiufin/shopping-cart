@@ -1,0 +1,49 @@
+@import "../../variables.scss";
+
+.image-slider {
+  width: 100%;
+  position: relative;
+}
+
+.image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.image-container.active {
+  z-index: 3;
+  opacity: 1;
+  position: relative;
+}
+
+.image-container.next {
+  z-index: 2;
+}
+
+.dots-container {
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: background-color .3s ease;
+
+  &.dot-active {
+    background-color: $color-black;
+  }
+}

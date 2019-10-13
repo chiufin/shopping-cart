@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Status should mount content properly 1`] = `
+<Status
+  code={404}
+>
+  <Route
+    render={[Function]}
+  >
+    &lt;div /&gt;
+  </Route>
+</Status>
+`;
+
+exports[`Status should render 1`] = `
+Object {
+  "getInstance": [Function],
+}
+`;

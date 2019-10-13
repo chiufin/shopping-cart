@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainLayout Renders correctly 1`] = `
+<div
+  className="app"
+  data-e2e="app"
+>
+  <a
+    href="#app-content"
+  >
+    Skip to main content
+  </a>
+  <Header />
+  <div
+    className="app-content"
+    id="app-content"
+  >
+    <main>
+      HELLO
+    </main>
+  </div>
+</div>
+`;

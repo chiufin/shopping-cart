@@ -1,0 +1,50 @@
+@import "./reset";
+@import "../variables.scss";
+
+body {
+  position: relative;
+  color: $color-black;
+  background-color: #fff;
+  font-family: "ArgosBook", Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: $color-black;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+h1, :global(.h1) {
+  font-size: 30px;
+  margin: 30px 0;
+  text-align: center;
+}
+
+h2, :global(.h2){
+  font-size: 28px;
+  margin-bottom: 30px;
+  
+  &:global(.header) {
+    font-size: 22px;
+    margin: 0;
+  }
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+strong {
+  font-weight: bold;
+}
+
