@@ -5,33 +5,34 @@ import {
   addProductToBasket,
   removeProductFromBasket
 } from '../../actions/basketActions'
+// eslint-disable-next-line css-modules/no-unused-class
 import styles from './Basket.scss'
- 
-const Basket = ({length, products, addProductToBasket, removeProductFromBasket}) => {
+
+const Basket = (props) => {
+  const { length, products } = props
   const [ toggle, setToggle ] = useState(false)
   return (
-    <div className = {styles.basket}>
+    <div className={styles.basket}>
       <h4>Basket: {length} items </h4>
-      { 
-        length > 0 &&
-        <button onClick={() => setToggle(!toggle)}>{toggle ? 'close panel' : 'open panel'}</button>
-      }
-      {toggle && 
+      { length > 0 && <button type="button" onClick={() => setToggle(!toggle)}>{toggle ? 'close panel' : 'open panel'}</button>}
+      {toggle
+      && (
         <ul>
           {products.map(([product, amount]) => {
             const { productId, title, price, image } = product
-            return(
+            return (
               <li className={styles.basket__item } key={productId}>
-                <img className={styles.basket__item__image } src={image}/>
-                <p className={styles.basket__item__text } >{title}</p>
+                <img className={styles.basket__item__image } src={image} alt={title} />
+                <p className={styles.basket__item__text }>{title}</p>
                 <p className={styles.basket__item__text }>amount: {amount}</p>
                 <p className={styles.basket__item__text }>£ {price}</p>
-                <button onClick={() => addProductToBasket(product)}>add</button>
-                <button onClick={() => removeProductFromBasket(product)}>remove</button>
+                <button type="button" onClick={() => props.addProductToBasket(product)}>add</button>
+                <button type="button" onClick={() => props.removeProductFromBasket(product)}>remove</button>
               </li>
             )
           })}
         </ul>
+      )
       }
     </div>
   )
@@ -53,26 +54,25 @@ Basket.propTypes = {
     ))
   )),
   addProductToBasket: PropTypes.func.isRequired,
-  removeProductFromBasket:  PropTypes.func.isRequired,
+  removeProductFromBasket: PropTypes.func.isRequired,
 }
 
 Basket.defaultProps = {
-  products: []
+  products: [],
 }
 
 
-const organizedList = basket => 
-  basket.reduce((acc, current)=> {
-    const index = acc.findIndex(each => each[0] === current)
-    if(index === -1){
-      acc.push([ current, 1 ])
-    }else{
-      acc[index]=[current, acc[index][1]+1]
-    }
-    return acc
-  }, [])
+const organizedList = basket => basket.reduce((acc, current) => {
+  const index = acc.findIndex(each => each[0] === current)
+  if (index === -1) {
+    acc.push([ current, 1 ])
+  } else {
+    acc[index] = [current, acc[index][1] + 1]
+  }
+  return acc
+}, [])
 
-const mapStateToProps = ({basket}) => ({
+const mapStateToProps = ({ basket }) => ({
   length: basket.length,
   products: organizedList(basket),
 })
@@ -81,6 +81,6 @@ export default connect(
   mapStateToProps,
   {
     addProductToBasket,
-    removeProductFromBasket
+    removeProductFromBasket,
   }
 )(Basket)

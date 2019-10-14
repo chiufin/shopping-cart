@@ -10,19 +10,20 @@ import {
 import styles from './HomeContainer.scss'
 import Product from '../../components/Product/Product'
 import Basket from '../Basket/Basket'
+
 export class HomeContainer extends Component {
   componentDidMount() {
     this.props.loadProductsData()
   }
 
   render() {
-    const { products, addProductToBasket } = this.props
+    const { products } = this.props
     return (
       <Fragment>
         <h1>Products</h1>
-        <Basket/>   
+        <Basket />
         <div className={styles['products-container']}>
-          {products.map(product => <Product key={product.productId} product={product} onProductClick={() => addProductToBasket(product)}/>)}
+          {products.map(product => <Product key={product.productId} product={product} onProductClick={() => this.props.addProductToBasket(product)} />)}
         </div>
       </Fragment>
 
@@ -46,5 +47,5 @@ HomeContainer.defaultProps = {
 
 export default connect(mapStateToProps, {
   loadProductsData,
-  addProductToBasket
+  addProductToBasket,
 })(HomeContainer)
