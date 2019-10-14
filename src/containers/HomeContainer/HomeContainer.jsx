@@ -9,7 +9,7 @@ import {
 } from '../../actions/basketActions'
 import styles from './HomeContainer.scss'
 import Product from '../../components/Product/Product'
-import Basket from '../../components/Basket/Basket'
+import Basket from '../Basket/Basket'
 export class HomeContainer extends Component {
   componentDidMount() {
     this.props.loadProductsData()
