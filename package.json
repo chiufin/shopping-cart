@@ -90,7 +90,7 @@
     "ignore-styles": "^5.0.1",
     "isomorphic-unfetch": "^2.1.1",
     "jest": "^23.6.0",
-    "nconf": "^0.10.0",
+    "nconf": "^0.11.4",
     "node-sass-chokidar": "0.0.3",
     "nodemon": "^1.18.7",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
